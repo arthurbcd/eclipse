@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sushiexpress>
+    <menu>
+        <sushi id="0">
+            <name>Sashimi</name>
+            <price>500</price>
+        </sushi>
+        <sushi id="1">
+            <name>California Roll</name>
+            <price>750</price>
+        </sushi>
+    </menu>
+    <orders>
+        <order id="0">
+            <items>
+                <item id="0"/>
+                <item id="1"/>
+            </items>
+            <status>pending</status>
+        </order>
+        <order id="1">
+            <items>
+                <item id="1"/>
+            </items>
+            <status>rolling</status>
+        </order>
+        <order id="0">
+            <items>
+                <item id="0"/>
+                <item id="1"/>
+            </items>
+            <status>ready</status>
+        </order>
+    </orders>
+</sushiexpress>

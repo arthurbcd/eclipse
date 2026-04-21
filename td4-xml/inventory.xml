@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory>
+    <item>
+        <id>1</id>
+        <name>Buffer de Dados</name>
+        <quantity>10</quantity>
+        <category>Network</category>
+    </item>
+    <item>
+        <id>2</id>
+        <name>Socket Connection</name>
+        <quantity>5</quantity>
+        <category>IO</category>
+    </item>
+</inventory>

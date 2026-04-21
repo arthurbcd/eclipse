@@ -1,0 +1,28 @@
+{
+  "sushiexpress": {
+    "menu": [
+      {
+        "id": 0,
+        "name": "Sashimi",
+        "price": 500
+      },
+      {
+        "id": 1,
+        "name": "California Roll",
+        "price": 750
+      }
+    ],
+    "orders": [
+      {
+        "id": 0,
+        "items": [0, 1],
+        "status": "pending"
+      },
+      {
+        "id": 1,
+        "items": [1],
+        "status": "rolling"
+      }
+    ]
+  }
+}

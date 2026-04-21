@@ -1,0 +1,27 @@
+<!ELEMENT sushiexpress (menu, orders)>
+
+    <!ELEMENT menu (sushi+)>
+
+        <!ELEMENT sushi (name, price)>
+
+            <!ATTLIST sushi id CDATA #REQUIRED>
+
+                <!ELEMENT name (#PCDATA)>
+
+                    <!ELEMENT price (#PCDATA)>
+
+                        <!ATTLIST price currency CDATA #REQUIRED>
+
+                            <!ELEMENT orders (order*)>
+
+                                <!ELEMENT order (items, status)>
+
+                                    <!ATTLIST order id CDATA #REQUIRED>
+
+                                        <!ELEMENT items (item+)>
+
+                                            <!ELEMENT item EMPTY>
+
+                                                <!ATTLIST item id CDATA #REQUIRED quantity CDATA #REQUIRED>
+
+                                                    <!ELEMENT status (#PCDATA)>

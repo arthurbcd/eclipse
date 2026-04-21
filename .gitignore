@@ -1,0 +1,8 @@
+.metadata/
+bin/
+*.class
+.recommenders/
+.lock
+.log
+*.zip
+*.zip_expanded/

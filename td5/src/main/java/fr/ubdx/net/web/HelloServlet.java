@@ -17,13 +17,11 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Exibe o texto na saída padrão do Eclipse
-        System.out.println("=> [HelloServlet] Requisição recebida! Texto impresso na saída padrão.");
+        System.out.println("=> [HelloServlet].");
 
-        // Exibe o texto também no navegador
         response.setContentType("text/plain;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("Olá do projeto td5! A servlet imprimiu um texto na saída padrão e no navegador.");
+            out.println("td5.");
         }
     }
 }

@@ -1,60 +1,8 @@
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Nom version serveur :              Apache Tomcat/9.0.97
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Serveur compilé :                  Nov 6 2024 19:55:19 UTC
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Version du serveur :               9.0.97.0
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Nom de l'OS :                      Linux
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Version OS :                       6.12.74+deb12-amd64
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Architecture :                     amd64
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Java Home :                        /opt/local/stow/eclipse/eclipse-2023-09/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_17.0.8.v20230831-1047/jre
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Version JVM :                      17.0.8.1+1
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Fournisseur de la JVM :            Eclipse Adoptium
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: CATALINA_BASE :                    /autofs/unitytravail/travail/amonteiromir/eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp0
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: CATALINA_HOME :                    /autofs/unitytravail/travail/amonteiromir/eclipse/apache-tomcat-9.0.97
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dcatalina.base=/autofs/unitytravail/travail/amonteiromir/eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp0
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dcatalina.home=/net/cremi/amonteiromir/Bureau/espaces/travail/eclipse/apache-tomcat-9.0.97
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dwtp.deploy=/autofs/unitytravail/travail/amonteiromir/eclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : --add-opens=java.base/java.lang=ALL-UNNAMED
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : --add-opens=java.base/java.io=ALL-UNNAMED
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : --add-opens=java.base/java.util=ALL-UNNAMED
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dfile.encoding=UTF-8
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dstdout.encoding=UTF-8
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -Dstderr.encoding=UTF-8
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.VersionLoggerListener log
-INFOS: Argument de la ligne de commande : -XX:+ShowCodeDetailsInExceptionMessages
-avr. 21, 2026 2:38:18 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
-INFOS: La librairie Apache Tomcat Native basée sur APR qui permet des performances optimales dans les environnements de production n'a pas été trouvée sur le java.library.path : [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
-avr. 21, 2026 2:38:18 PM org.apache.coyote.AbstractProtocol init
-INFOS: Initialisation du gestionnaire de protocole ["http-nio-8080"]
-avr. 21, 2026 2:38:18 PM org.apache.catalina.startup.Catalina load
-INFOS: L'initialisation du serveur a pris [594] millisecondes
-avr. 21, 2026 2:38:18 PM org.apache.catalina.core.StandardService startInternal
-INFOS: Démarrage du service [Catalina]
-avr. 21, 2026 2:38:18 PM org.apache.catalina.core.StandardEngine startInternal
-INFOS: Démarrage du moteur de Servlets : [Apache Tomcat/9.0.97]
-avr. 21, 2026 2:38:19 PM org.apache.coyote.AbstractProtocol start
-INFOS: Démarrage du gestionnaire de protocole ["http-nio-8080"]
-avr. 21, 2026 2:38:19 PM org.apache.catalina.startup.Catalina start
-INFOS: Le démarrage du serveur a pris [315] millisecondes
+État HTTP 404 – Non trouvé
+
+Type Rapport d'état
+
+message La ressource demandée [/td5/hello] n'est pas disponible
+
+description La ressource demandée n'est pas disponible.
+Apache Tomcat/9.0.97

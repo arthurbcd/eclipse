@@ -4,4 +4,22 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
   <display-name>td5</display-name>
+
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>fr.ubdx.net.web.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FormSubmitServlet</servlet-name>
+    <servlet-class>fr.ubdx.net.web.FormSubmitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormSubmitServlet</servlet-name>
+    <url-pattern>/submitForm</url-pattern>
+  </servlet-mapping>
 </web-app>

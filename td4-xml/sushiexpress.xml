@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sushiexpress SYSTEM "sushi_rules.dtd">
 <sushiexpress>
     <menu>
         <sushi id="0">
             <name>Sashimi</name>
-            <price>500</price>
+            <price currency="BRL">500</price>
         </sushi>
         <sushi id="1">
             <name>California Roll</name>
-            <price>750</price>
+            <price currency="BRL">750</price>
         </sushi>
     </menu>
     <orders>
         <order id="0">
             <items>
-                <item id="0"/>
-                <item id="1"/>
+                <item id="0" quantity="2"/>
+                <item id="1" quantity="1"/>
             </items>
             <status>pending</status>
         </order>
         <order id="1">
             <items>
-                <item id="1"/>
+                <item id="1" quantity="1"/>
             </items>
             <status>rolling</status>
         </order>
         <order id="2">
             <items>
-                <item id="0"/>
-                <item id="1"/>
+                <item id="0" quantity="1"/>
+                <item id="1" quantity="1"/>
             </items>
             <status>ready</status>
         </order>

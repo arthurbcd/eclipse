@@ -20,20 +20,20 @@ public class HelloServlet extends HttpServlet {
         boolean console = "console".equalsIgnoreCase(target);
 
         if (console) {
-            System.out.println("=> [HelloServlet] Mensagem enviada para a console: td5.");
+            System.out.println("=> [HelloServlet]");
             response.setContentType("text/plain;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
-                out.println("Modo console selecionado. Verifique a saída do servidor.");
+                out.println("mode console");
             }
         } else if (browser) {
             response.setContentType("text/plain;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
-                out.println("td5. (modo navegador)");
+                out.println("mode navigator");
             }
         } else {
             response.setContentType("text/plain;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
-                out.println("td5. Use ?target=console ou ?target=browser");
+                out.println("td5. Use ?target=console ou ?target=browser in the url");
             }
         }
     }

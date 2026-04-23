@@ -2,6 +2,7 @@ package fr.ubdx.net.buffers;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.charset.Charset;
@@ -42,7 +43,7 @@ public class NetcatUDP {
 
                 // Réception
                 buffer.clear(); // repositionne la main au debut du papier pour pouvoir ecrire jusq a la fin
-                InetSocketAddress sender = (InetSocketAddress) dc.receive(buffer); // reception
+                SocketAddress sender = dc.receive(buffer); // reception
                 buffer.flip(); // repositionne les yeaux au debut pour ne lire q ce q a ete ecrit
 
                 System.out.println("Received " + buffer.remaining() + " bytes from " + sender);

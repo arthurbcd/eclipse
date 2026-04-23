@@ -19,24 +19,31 @@ public class NetcatUDP {
             usage();
             return;
         }
+        
+		String hostName = args[0]; // nom "addresse destination"
+		int port = Integer.parseInt(args[1]); // num porte
+		String charsetName = args[2]; // nom charset
 
-        InetSocketAddress serverAddress = new InetSocketAddress(args[0], Integer.parseInt(args[1]));
-        Charset charset = Charset.forName(args[2]);
-        ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+		ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE); // le papier
+        InetSocketAddress serverAddress = new InetSocketAddress(hostName, port); // bon de livraison
+        Charset charset = Charset.forName(charsetName); // "langue" message
 
         try (DatagramChannel dc = DatagramChannel.open();
-             Scanner scanner = new Scanner(System.in)) {
+        	// dc.bind(null)
+        		
+        	// pour ecrire chaque lettre
+            Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+                String line = scanner.nextLine(); // mots
 
                 // Envoi
-                ByteBuffer outBuffer = charset.encode(line);
-                dc.send(outBuffer, serverAddress);
+                ByteBuffer outBuffer = charset.encode(line); // ecrire au papier
+                dc.send(outBuffer, serverAddress); // expedition
 
                 // Réception
-                buffer.clear();
-                InetSocketAddress sender = (InetSocketAddress) dc.receive(buffer);
-                buffer.flip();
+                buffer.clear(); // repositionne la main au debut du papier pour pouvoir ecrire jusq a la fin
+                InetSocketAddress sender = (InetSocketAddress) dc.receive(buffer); // reception
+                buffer.flip(); // repositionne les yeaux au debut pour ne lire q ce q a ete ecrit
 
                 System.out.println("Received " + buffer.remaining() + " bytes from " + sender);
                 System.out.println("String: " + charset.decode(buffer));

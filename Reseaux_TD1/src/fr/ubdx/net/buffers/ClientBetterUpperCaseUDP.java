@@ -5,7 +5,6 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ClientBetterUpperCaseUDP {
@@ -33,10 +32,11 @@ public class ClientBetterUpperCaseUDP {
 
                 // Envoi
                 buffer.clear(); // rafraichir le papier
-                ByteBuffer charsetNameBuffer = Charset.forName("US-ASCII").encode(charsetName); // encodage du nom
+                ByteBuffer charsetNameBuffer = Charset.forName("ASCII").encode(charsetName); // encodage du nom
                 ByteBuffer contentBuffer = charset.encode(line); // ecrire le message
 
-                if (4 + charsetNameBuffer.remaining() + contentBuffer.remaining() > MAX_PACKET_SIZE) {
+                // single number size + charName size + message size
+                if (Integer.BYTES + charsetNameBuffer.remaining() + contentBuffer.remaining() > MAX_PACKET_SIZE) {
                     System.err.println("Message too long");
                     continue;
                 }
@@ -56,7 +56,7 @@ public class ClientBetterUpperCaseUDP {
                 // On utilise limit() pour ne pas dépasser la taille du nom du charset
                 int oldLimit = buffer.limit();
                 buffer.limit(buffer.position() + resCharsetLen);
-                Charset resCharset = Charset.forName("US-ASCII").decode(buffer); // nouvelle langue
+                Charset resCharset = Charset.forName("ASCII"); // nouvelle langue
 
                 buffer.limit(oldLimit); // On remet la limite pour lire le reste
                 System.out.println(resCharset.decode(buffer).toString()); // lecture finale

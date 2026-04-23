@@ -20,46 +20,48 @@ public class ClientBetterUpperCaseUDP {
             return;
         }
 
-        InetSocketAddress serverAddress = new InetSocketAddress(args[0], Integer.parseInt(args[1])); // bon de livraison
+        InetSocketAddress serverAddress = new InetSocketAddress(args[0], Integer.parseInt(args[1])); // destination
         String charsetName = args[2];
-        Charset charset = Charset.forName(charsetName); // "langue" message
-        ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE); // le papier
+        Charset charset = Charset.forName(charsetName); // langue
+        ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE); // papier
 
         try (DatagramChannel dc = DatagramChannel.open();
              Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine(); // mots
+                String line = scanner.nextLine(); // lire clavier
 
-                // Envoi
-                buffer.clear(); // rafraichir le papier
-                ByteBuffer charsetNameBuffer = Charset.forName("ASCII").encode(charsetName); // encodage du nom
-                ByteBuffer contentBuffer = charset.encode(line); // ecrire le message
+                // envoi
+                buffer.clear(); // prep ecrire
+                ByteBuffer charsetNameBuffer = Charset.forName("ASCII").encode(charsetName); // nom charset
+                ByteBuffer contentBuffer = charset.encode(line); // msg pure
 
-                // single number size + charName size + message size
+                // ca passe?
                 if (Integer.BYTES + charsetNameBuffer.remaining() + contentBuffer.remaining() > MAX_PACKET_SIZE) {
-                    System.err.println("Message too long");
+                    System.err.println("trop long");
                     continue;
                 }
 
-                buffer.putInt(charsetNameBuffer.remaining()); // taille du nom
-                buffer.put(charsetNameBuffer); // le nom du charset
-                buffer.put(contentBuffer); // le contenu
-                buffer.flip(); // pret pour l'expedition
+                buffer.putInt(charsetNameBuffer.remaining()); // taille nom
+                buffer.put(charsetNameBuffer); // le nome
+                buffer.put(contentBuffer); // la msg
+                buffer.flip(); // prep lire
                 dc.send(buffer, serverAddress);
 
-                // Réception
-                buffer.clear(); // metre la main au debut du papier pour ecrire la reponse
+                // reception
+                buffer.clear(); // prep a recevoir
                 dc.receive(buffer);
-                buffer.flip(); // metre les yeaux au debut pour lire la reponse
+                buffer.flip(); // prep a lire
 
-                int resCharsetLen = buffer.getInt(); // lire la taille du nom recu
-                // On utilise limit() pour ne pas dépasser la taille du nom du charset
+                int resCharsetLen = buffer.getInt(); // taille charset & positionne
+
                 int oldLimit = buffer.limit();
-                buffer.limit(buffer.position() + resCharsetLen);
-                Charset resCharset = Charset.forName("ASCII"); // nouvelle langue
+                buffer.limit(buffer.position() + resCharsetLen); // limite pour lire q le nom charset
+                String resCharsetName = Charset.forName("ASCII").decode(buffer).toString(); // quelle langue
 
-                buffer.limit(oldLimit); // On remet la limite pour lire le reste
-                System.out.println(resCharset.decode(buffer).toString()); // lecture finale
+                buffer.limit(oldLimit); // reste du buffer pour lire le reste (message)
+                String message = Charset.forName(resCharsetName).decode(buffer).toString(); // affiche reponse
+
+                System.out.println("Serveur: " + message);
             }
         }
     }

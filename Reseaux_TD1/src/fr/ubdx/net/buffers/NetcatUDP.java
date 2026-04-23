@@ -51,3 +51,53 @@ public class NetcatUDP {
         }
     }
 }
+
++ java -version
+openjdk version "1.8.0_312"
+OpenJDK Runtime Environment (build 1.8.0_312-8u312-b07-1~deb9u1-b07)
+OpenJDK 64-Bit Server VM (build 25.312-b07, mixed mode)
++ javac fr/ubdx/net/udp/NetcatUDP.java
++ java -jar ServerEchoUDP.jar 7777
++ java -jar ServerUpperCaseUDP.jar 4545 UTF-8
++ java fr.ubdx.net.udp.NetcatUDP localhost 7777 UTF-8
+Error: Could not find or load main class fr.ubdx.net.udp.NetcatUDP
++ java fr.ubdx.net.udp.NetcatUDP localhost 4545 UTF-8
+Error: Could not find or load main class fr.ubdx.net.udp.NetcatUDP
++ java fr.ubdx.net.udp.NetcatUDP localhost 4545 latin1
+Error: Could not find or load main class fr.ubdx.net.udp.NetcatUDP
+connection closed
+///
+package fr.ubdx.net.udp;
+
+import java.io.IOException;
+
+
+
+public class NetcatUDP {
+
+
+    private static void usage(){
+        System.out.println("Usage : NetcatUDP host port charset");
+    }
+
+    public static void main(String[] args) throws IOException {
+        if (args.length!=3){
+            usage();
+            return;
+        }
+
+
+    }
+}
+
++ java -version
+openjdk version "1.8.0_312"
+OpenJDK Runtime Environment (build 1.8.0_312-8u312-b07-1~deb9u1-b07)
+OpenJDK 64-Bit Server VM (build 25.312-b07, mixed mode)
++ javac fr/ubdx/net/udp/NetcatUDP.java
++ java -jar ServerEchoUDP.jar 7777
++ java -jar ServerUpperCaseUDP.jar 4545 UTF-8
++ java fr.ubdx.net.udp.NetcatUDP localhost 7777 UTF-8
++ java fr.ubdx.net.udp.NetcatUDP localhost 4545 UTF-8
++ java fr.ubdx.net.udp.NetcatUDP localhost 4545 latin1
+connection closed

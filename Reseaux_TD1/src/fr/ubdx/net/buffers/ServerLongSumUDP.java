@@ -23,8 +23,8 @@ public class ServerLongSumUDP {
             usage();
             return;
         }
-        int p = Integer.parseInt(args[0]);
-        if (p < 1024 || p > 65535) {
+        int port = Integer.parseInt(args[0]);
+        if (port < 1024 || port > 65535) {
             System.out.println("The port number must be between 1024 and 65535");
             return;
         }
@@ -33,7 +33,7 @@ public class ServerLongSumUDP {
         Map<InetSocketAddress, Map<Long, Calcul>> map = new HashMap<>();
 
         try (DatagramChannel dc = DatagramChannel.open()) {
-            dc.bind(new InetSocketAddress(p));
+            dc.bind(new InetSocketAddress(port));
             while (true) {
                 bb.clear();
                 InetSocketAddress isa = (InetSocketAddress) dc.receive(bb);

@@ -46,9 +46,9 @@ public class ServerLongSumUDP {
                     long opValue = bb.getLong(); // (type=1,sessionID,posOper,totalOper,opValue[])
 
                     Map<Long, Calcul> cm = map.computeIfAbsent(isa, k -> new HashMap<>()); // ??=
-                    Calcul c = cm.computeIfAbsent(sessionID, k ->  new Calcul(totalOper));
-                    
-                    c.setOperands(idPosOper, opValue);
+                    Calcul calc = cm.computeIfAbsent(sessionID, k ->  new Calcul(totalOper));
+
+                    calc.setOperands(idPosOper, opValue);
 
                     bb.clear();
                     bb.put(ACK);
@@ -57,8 +57,8 @@ public class ServerLongSumUDP {
                     bb.flip();
                     dc.send(bb, isa);
 
-                    if (c.isComplete()) {
-                        long sum = c.compute();
+                    if (calc.isComplete()) {
+                        long sum = calc.compute();
                         bb.clear();
                         bb.put(RES);
                         bb.putLong(sessionID);

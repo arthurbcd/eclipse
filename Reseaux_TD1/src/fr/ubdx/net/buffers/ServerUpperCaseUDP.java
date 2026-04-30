@@ -2,11 +2,9 @@ package fr.ubdx.net.udp;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 public class ServerUpperCaseUDP {
 
@@ -27,45 +25,37 @@ public class ServerUpperCaseUDP {
             return;
         }
 
-        String charsetName = args[1];
-        Charset charset = Charset.forName(charsetName);
+        String csName = args[1];
+        Charset cs = Charset.forName(csName);
+        ByteBuffer bb = ByteBuffer.allocate(MAX_PACKET_SIZE);
 
         try (DatagramChannel dc = DatagramChannel.open()) {
             dc.bind(new InetSocketAddress(port));
-            ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);
 
             while (true) {
-                buffer.clear();
-                InetSocketAddress sender = (InetSocketAddress) dc.receive(buffer);
+                bb.clear(); // ([...])
+                InetSocketAddress exp = (InetSocketAddress) dc.receive(bb); // (len, charset, message[],)
+                bb.flip(); // ([len,charset,message],)
 
-                buffer.flip();
+                int oldLim = bb.limit();
+                int len = bb.getInt(); // (len,[charset,message],)
 
-                // Decode incoming packet
-                int inCharsetLen = buffer.getInt();
+                bb.limit(bb.position() + len); // (len,[charset],message,)
+                String inCsName = Charset.forName("ASCII").decode(bb).toString(); // (len,charset[],message,)
 
-                int oldLimit = buffer.limit();
-                buffer.limit(buffer.position() + inCharsetLen);
-                String inCharsetName = StandardCharsets.US_ASCII.decode(buffer).toString();
+                bb.limit(oldLim); // (len, charset,[message],)
+                String msg = Charset.forName(inCsName).decode(bb).toString(); // (len,charset,message[],)
 
-                buffer.limit(oldLimit); // Restore limit for reading the payload
-                String message = Charset.forName(inCharsetName).decode(buffer).toString();
+                ByteBuffer csNameBb = Charset.forName("ASCII").encode(csName);
+                ByteBuffer msgBb = cs.encode(msg.toUpperCase());
 
-                // Process String
-                String upperMessage = message.toUpperCase();
+                bb.clear(); // ([...])
+                bb.putInt(csNameBb.remaining()); // (len,[...],)
+                bb.put(csNameBb); // (len,charset,[...],)
+                bb.put(msgBb); // (len,charset,message[],)
+                bb.flip(); // ([len,charset,message],)
 
-                // Prepare response
-                buffer.clear();
-                ByteBuffer outCharsetNameBuffer = StandardCharsets.US_ASCII.encode(charsetName);
-                ByteBuffer outMessageBuffer = charset.encode(upperMessage);
-
-                buffer.putInt(outCharsetNameBuffer.remaining());
-                buffer.put(outCharsetNameBuffer);
-                buffer.put(outMessageBuffer);
-
-                buffer.flip();
-
-                // Send response
-                dc.send(buffer, sender);
+                dc.send(bb, exp); // (len,charset,message[],)
             }
         }
     }

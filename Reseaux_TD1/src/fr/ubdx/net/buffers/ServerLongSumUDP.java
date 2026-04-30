@@ -30,7 +30,7 @@ public class ServerLongSumUDP {
         }
 
         ByteBuffer bb = ByteBuffer.allocate(33);
-        Map<InetSocketAddress, Map<Long, Calcul>> map = new HashMap<>();
+        Map<String, Calcul> sessions = new HashMap<>();
 
         try (DatagramChannel dc = DatagramChannel.open()) {
             dc.bind(new InetSocketAddress(port));
@@ -39,15 +39,14 @@ public class ServerLongSumUDP {
                 InetSocketAddress isa = (InetSocketAddress) dc.receive(bb);
                 bb.flip();
 
-                if (bb.hasRemaining() && bb.get() == OP) { // (type=1,[sessionID,posOper,totalOper,opValue])
-                    long sessionID = bb.getLong(); // (type=1,sessionID,[posOper,totalOper,opValue])
-                    long idPosOper = bb.getLong(); // (type=1,sessionID,posOper,[totalOper,opValue])
-                    long totalOper = bb.getLong(); // (type=1,sessionID,posOper,totalOper,[opValue])
-                    long opValue = bb.getLong(); // (type=1,sessionID,posOper,totalOper,opValue[])
+                if (bb.hasRemaining() && bb.get() == OP) {
+                    long sessionID = bb.getLong();
+                    long idPosOper = bb.getLong();
+                    long totalOper = bb.getLong();
+                    long opValue = bb.getLong();
 
-                    Map<Long, Calcul> cm = map.computeIfAbsent(isa, k -> new HashMap<>()); // ??=
-                    Calcul calc = cm.computeIfAbsent(sessionID, k ->  new Calcul(totalOper));
-
+                    String key = isa.toString() + sessionID;
+                    Calcul calc = sessions.computeIfAbsent(key, k -> new Calcul(totalOper));
                     calc.setOperands(idPosOper, opValue);
 
                     bb.clear();

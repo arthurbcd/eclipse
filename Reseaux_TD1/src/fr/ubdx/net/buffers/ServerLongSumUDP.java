@@ -45,10 +45,9 @@ public class ServerLongSumUDP {
                     long totalOper = bb.getLong(); // (type=1,sessionID,posOper,totalOper,[opValue])
                     long opValue = bb.getLong(); // (type=1,sessionID,posOper,totalOper,opValue[])
 
-                    map.putIfAbsent(isa, new HashMap<>());
-                    Map<Long, Calcul> cm = map.get(isa);
-                    cm.putIfAbsent(sessionID, new Calcul(totalOper));
-                    Calcul c = cm.get(sessionID);
+                    Map<Long, Calcul> cm = map.computeIfAbsent(isa, k -> new HashMap<>()); // ??=
+                    Calcul c = cm.computeIfAbsent(sessionID, k ->  new Calcul(totalOper));
+                    
                     c.setOperands(idPosOper, opValue);
 
                     bb.clear();

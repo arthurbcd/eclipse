@@ -14,6 +14,10 @@ public class ServerLongSumUDP {
         System.out.println("Usage : ServerLongSumUDP port");
     }
 
+    private static final byte OP = 1;
+    private static final byte ACK = 2;
+    private static final byte RES = 3;
+
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             usage();
@@ -35,7 +39,7 @@ public class ServerLongSumUDP {
                 InetSocketAddress isa = (InetSocketAddress) dc.receive(bb);
                 bb.flip();
 
-                if (bb.hasRemaining() && bb.get() == 1) { // (type=1,[sessionID,posOper,totalOper,opValue])
+                if (bb.hasRemaining() && bb.get() == OP) { // (type=1,[sessionID,posOper,totalOper,opValue])
                     long sessionID = bb.getLong(); // (type=1,sessionID,[posOper,totalOper,opValue])
                     long idPosOper = bb.getLong(); // (type=1,sessionID,posOper,[totalOper,opValue])
                     long totalOper = bb.getLong(); // (type=1,sessionID,posOper,totalOper,[opValue])
@@ -48,7 +52,7 @@ public class ServerLongSumUDP {
                     c.setOperands(idPosOper, opValue);
 
                     bb.clear();
-                    bb.put((byte) 2);
+                    bb.put(ACK);
                     bb.putLong(sessionID);
                     bb.putLong(idPosOper);
                     bb.flip();
@@ -57,7 +61,7 @@ public class ServerLongSumUDP {
                     if (c.isComplete()) {
                         long sum = c.compute();
                         bb.clear();
-                        bb.put((byte) 3);
+                        bb.put(RES);
                         bb.putLong(sessionID);
                         bb.putLong(sum);
                         bb.flip();

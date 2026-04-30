@@ -35,11 +35,11 @@ public class ServerLongSumUDP {
                 InetSocketAddress isa = (InetSocketAddress) dc.receive(bb);
                 bb.flip();
 
-                if (bb.hasRemaining() && bb.get() == 1) {
-                    long sessionID = bb.getLong();
-                    long idPosOper = bb.getLong();
-                    long totalOper = bb.getLong();
-                    long opValue = bb.getLong();
+                if (bb.hasRemaining() && bb.get() == 1) { // (type=1,[sessionID,posOper,totalOper,opValue])
+                    long sessionID = bb.getLong(); // (type=1,sessionID,[posOper,totalOper,opValue])
+                    long idPosOper = bb.getLong(); // (type=1,sessionID,posOper,[totalOper,opValue])
+                    long totalOper = bb.getLong(); // (type=1,sessionID,posOper,totalOper,[opValue])
+                    long opValue = bb.getLong(); // (type=1,sessionID,posOper,totalOper,opValue[])
 
                     map.putIfAbsent(isa, new HashMap<>());
                     Map<Long, Calcul> cm = map.get(isa);

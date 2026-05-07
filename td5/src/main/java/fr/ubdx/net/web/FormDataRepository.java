@@ -10,11 +10,11 @@ public final class FormDataRepository {
     private FormDataRepository() {
     }
 
-    public static synchronized void add(FormData formData) {
+    public static void add(FormData formData) {
         FORM_DATA_LIST.add(formData);
     }
 
-    public static synchronized List<FormData> getAll() {
+    public static List<FormData> getAll() {
         return Collections.unmodifiableList(new ArrayList<>(FORM_DATA_LIST));
     }
 }

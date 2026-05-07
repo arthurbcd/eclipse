@@ -1,9 +1,15 @@
 package fr.ubdx.net.web;
 
 public class FormData {
-    private final String name;
-    private final String email;
-    private final String message;
+    private String name;
+    private String email;
+    private String message;
+
+    public FormData() {
+        this.name = "";
+        this.email = "";
+        this.message = "";
+    }
 
     public FormData(String name, String email, String message) {
         this.name = name == null ? "" : name;
@@ -15,11 +21,23 @@ public class FormData {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

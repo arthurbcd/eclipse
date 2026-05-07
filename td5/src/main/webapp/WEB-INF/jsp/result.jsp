@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <jsp:useBean id="formData" scope="request" class="fr.ubdx.net.web.FormData"></jsp:useBean>
-    <jsp:useBean id="formDataList" scope="request" type="java.util.List"></jsp:useBean>
+    <jsp:useBean id="formDataList" scope="request" type="java.util.List<fr.ubdx.net.web.FormData>"></jsp:useBean>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -32,8 +32,7 @@
 
                 <h3>Historique des saisies (<%= formDataList.size() %>)</h3>
                 <div class="d-flex flex-wrap gap-2 mb-4">
-                    <% for (int i=0; i < formDataList.size(); i++) { fr.ubdx.net.web.FormData
-                        item=(fr.ubdx.net.web.FormData) formDataList.get(i); %>
+                    <% for (int i=0; i < formDataList.size(); i++) { var item= formDataList.get(i); %>
                         <div class="card" style="width: 18rem;">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><b>#<%= i + 1 %></b> - <%= item.getName() %>
@@ -45,7 +44,6 @@
                         </div>
                         <% } %>
                 </div>
-
                 <a href="${pageContext.request.contextPath}/form.jsp" class="btn btn-secondary">Retour au formulaire</a>
             </main>
         </div>

@@ -4,126 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire td5</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 720px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            line-height: 1.5;
-        }
-
-        form {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
-        }
-
-        input,
-        textarea,
-        button {
-            font: inherit;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 0.7rem;
-        }
-
-        .actions {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .error {
-            color: #b00020;
-            min-height: 1.25rem;
-        }
-    </style>
+    <title>Saisie td5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Formulaire td5</h1>
-    <form id="formulaire" method="post" action="${pageContext.request.contextPath}/submitForm" novalidate>
-        <div>
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required minlength="2" maxlength="60" autocomplete="name">
-            <div class="error" id="nameError"></div>
-        </div>
-        <div>
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-            <div class="error" id="emailError"></div>
-        </div>
-        <div>
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="4" cols="40" required minlength="5" maxlength="500"></textarea>
-            <div class="error" id="messageError"></div>
-        </div>
-        <div class="actions">
-            <button type="submit">Envoyer</button>
-        </div>
-    </form>
-
-    <script>
-        const form = document.getElementById('formulaire');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
-
-        const nameError = document.getElementById('nameError');
-        const emailError = document.getElementById('emailError');
-        const messageError = document.getElementById('messageError');
-
-        function validateName() {
-            if (nameInput.value.trim().length < 2) {
-                nameError.textContent = 'Le nom doit contenir au moins 2 caractères.';
-                return false;
-            }
-
-            nameError.textContent = '';
-            return true;
-        }
-
-        function validateEmail() {
-            if (!emailInput.validity.valid) {
-                emailError.textContent = 'Veuillez saisir un email valide.';
-                return false;
-            }
-
-            emailError.textContent = '';
-            return true;
-        }
-
-        function validateMessage() {
-            if (messageInput.value.trim().length < 5) {
-                messageError.textContent = 'Le message doit contenir au moins 5 caractères.';
-                return false;
-            }
-
-            messageError.textContent = '';
-            return true;
-        }
-
-        form.addEventListener('submit', function (event) {
-            const isValid = validateName() && validateEmail() && validateMessage();
-
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-
-        nameInput.addEventListener('input', validateName);
-        emailInput.addEventListener('input', validateEmail);
-        messageInput.addEventListener('input', validateMessage);
-    </script>
+<main>
+    <div class="container-fluid mt-3">
+        <h3>Formulaire de Saisie</h3>
+        <form id="formulaire" method="post" action="${pageContext.request.contextPath}/submitForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <button type="button" id="clearBtn" class="btn btn-danger">Effacer</button>
+        </form>
+    </div>
+</main>
+<script>
+    document.getElementById('clearBtn').addEventListener('click', function() {
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+    });
+</script>
 </body>
 </html>

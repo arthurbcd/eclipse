@@ -1,94 +1,54 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ page import="java.util.List" %>
-        <%@ page import="fr.ubdx.net.web.FormData" %>
-            <!DOCTYPE html>
-            <html lang="fr">
+    <jsp:useBean id="formData" scope="request" class="fr.ubdx.net.web.FormData"></jsp:useBean>
+    <jsp:useBean id="formDataList" scope="request" type="java.util.List"></jsp:useBean>
+    <!DOCTYPE html>
+    <html lang="fr">
 
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Résultat td5</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        max-width: 900px;
-                        margin: 2rem auto;
-                        padding: 0 1rem;
-                        line-height: 1.5;
-                    }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Résultat td5</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
 
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin-top: 1rem;
-                    }
+    <body>
+        <div class="container-fluid mt-3">
+            <main>
+                <h3>Dernière saisie</h3>
+                <div class="card mb-4" style="width: 25rem;">
+                    <div class="card-header">Saisie Actuelle</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nom:
+                            <jsp:getProperty property="name" name="formData" />
+                        </li>
+                        <li class="list-group-item">Email:
+                            <jsp:getProperty property="email" name="formData" />
+                        </li>
+                        <li class="list-group-item">Message:
+                            <jsp:getProperty property="message" name="formData" />
+                        </li>
+                    </ul>
+                </div>
 
-                    th,
-                    td {
-                        border: 1px solid #ccc;
-                        padding: 0.75rem;
-                        text-align: left;
-                        vertical-align: top;
-                    }
+                <h3>Historique des saisies (<%= formDataList.size() %>)</h3>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <% for (int i=0; i < formDataList.size(); i++) { fr.ubdx.net.web.FormData
+                        item=(fr.ubdx.net.web.FormData) formDataList.get(i); %>
+                        <div class="card" style="width: 18rem;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>#<%= i + 1 %></b> - <%= item.getName() %>
+                                </li>
+                                <li class="list-group-item">
+                                    <%= item.getEmail() %>
+                                </li>
+                            </ul>
+                        </div>
+                        <% } %>
+                </div>
 
-                    th {
-                        background: #f5f5f5;
-                    }
+                <a href="${pageContext.request.contextPath}/form.jsp" class="btn btn-secondary">Retour au formulaire</a>
+            </main>
+        </div>
+    </body>
 
-                    .actions {
-                        margin-top: 1.5rem;
-                    }
-                </style>
-            </head>
-
-            <body>
-                <h1>Données reçues</h1>
-                <p>Dernière saisie :</p>
-                <p>Nom : ${formData.name}</p>
-                <p>Email : ${formData.email}</p>
-                <p>Message : ${formData.message}</p>
-
-                <h2>Historique des saisies</h2>
-                <% List<FormData> formDataList = (List<FormData>) request.getAttribute("formDataList");
-                        if (formDataList != null && !formDataList.isEmpty()) {
-                        %>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nom</th>
-                                    <th>Email</th>
-                                    <th>Message</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for (int index=0; index < formDataList.size(); index++) { FormData
-                                    item=formDataList.get(index); %>
-                                    <tr>
-                                        <td>
-                                            <%= index + 1 %>
-                                        </td>
-                                        <td>
-                                            <%= item.getName() %>
-                                        </td>
-                                        <td>
-                                            <%= item.getEmail() %>
-                                        </td>
-                                        <td>
-                                            <%= item.getMessage() %>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
-                        <% } else { %>
-                            <p>Aucune saisie enregistrée.</p>
-                            <% } %>
-
-                                <div class="actions">
-                                    <p><a href="${pageContext.request.contextPath}/form.jsp">Retour au formulaire</a>
-                                    </p>
-                                </div>
-            </body>
-
-            </html>
+    </html>

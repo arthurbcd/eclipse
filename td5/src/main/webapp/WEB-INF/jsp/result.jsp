@@ -8,11 +8,11 @@
     </head>
 
     <body>
-        <h1>Dados recebidos</h1>
-        <p>Nome: ${formData.name}</p>
-        <p>Email: ${formData.email}</p>
-        <p>Mensagem: ${formData.message}</p>
-        <p><a href="../form.html">Voltar ao formulário</a></p>
+        <h1>Données reçues</h1>
+        <p>Nom : ${formData.name}</p>
+        <p>Email : ${formData.email}</p>
+        <p>Message : ${formData.message}</p>
+        <p><a href="../form.html">Retour au formulaire</a></p>
     </body>
 
     </html>

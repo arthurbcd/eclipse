@@ -1,6 +1,7 @@
 package fr.ubdx.net.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,18 +23,18 @@ public class FormSubmitServlet extends HttpServlet {
         String message = request.getParameter("message");
 
         FormData formData = new FormData(name, email, message);
-        System.out.println("=> [FormSubmitServlet] Dados recebidos:");
-        System.out.println("   nome=" + formData.getName());
-        System.out.println("   email=" + formData.getEmail());
-        System.out.println("   mensagem=" + formData.getMessage());
+        FormDataRepository.add(formData);
+
+        List<FormData> formDataList = FormDataRepository.getAll();
 
         request.setAttribute("formData", formData);
+        request.setAttribute("formDataList", formDataList);
         request.getRequestDispatcher("/WEB-INF/jsp/result.jsp").forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("form.html");
+        request.getRequestDispatcher("/form.jsp").forward(request, response);
     }
 }

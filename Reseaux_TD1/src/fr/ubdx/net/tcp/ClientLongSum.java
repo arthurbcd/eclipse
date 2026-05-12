@@ -44,18 +44,16 @@ public class ClientLongSum {
                 ByteBuffer bbResponse = ByteBuffer.allocate(Long.BYTES);
                 while (bbResponse.hasRemaining()) {
                     if (sc.read(bbResponse) == -1) {
-                        System.out.println("Connection with server lost.");
+                        System.out.println("Déconnexion du serveur");
                         return;
                     }
                 }
-
-                // en chunks / merceau.
 
                 bbResponse.flip();
                 System.out.println("------------------------------");
                 System.out.println("Sum: " + bbResponse.getLong());
                 System.out.println("------------------------------");
-                System.out.println("\n nbOperands?");
+                System.out.println("\nnbOperands?");
             }
         }
     }

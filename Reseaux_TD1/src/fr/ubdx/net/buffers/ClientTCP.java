@@ -29,9 +29,8 @@ public class ClientTCP {
             String request = "GET / HTTP/1.1\r\nHost: " + host + "\r\n\r\n";
             ByteBuffer bbRequest = charset.encode(request);
 
-            while (bbRequest.hasRemaining()) {
-                sc.write(bbRequest);
-            }
+            
+            sc.write(bbRequest);
             sc.shutdownOutput();
 
             ByteBuffer bbResponse = ByteBuffer.allocate(bbsize);

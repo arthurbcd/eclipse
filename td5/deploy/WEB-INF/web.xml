@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0">
+
+    <servlet>
+        <servlet-name>PizzaRestServlet</servlet-name>
+        <servlet-class>fr.ubdx.net.web.PizzaRestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PizzaRestServlet</servlet-name>
+        <url-pattern>/api/pizzas/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FormSubmitServlet</servlet-name>
+        <servlet-class>fr.ubdx.net.web.FormSubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormSubmitServlet</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
+
+</web-app>

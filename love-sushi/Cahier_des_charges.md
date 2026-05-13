@@ -24,7 +24,7 @@ Le projet est divisé en deux interfaces principales :
 *   **Technologies Front** : Page de présentation en HTML5/CSS3. Utilisation de **Bootstrap 5** pour garantir un design **Responsive** (adapté aux mobiles et tablettes).
 *   **Persistance des données** : Les données du menu, des questions et des réservations sont stockées de manière persistante (via Repository/Singleton).
 *   **API REST** : Fourniture d'une API REST pour la consultation du menu et des réservations, permettant une interopérabilité avec d'autres services ou composants (ex: React).
-*   **Environnement d'exécution** : L'application est développée sur l'IDE **Eclipse** et déployée sur un serveur **Apache Tomcat 9**.
+*   **Environnement d'exécution** : L'application est développée sur l'IDE **Eclipse** et déployée sur un serveur **Apache Tomcat 10** (utilisant la spécification Jakarta EE).
 
 ## 5. Livrables
 *   **Code Source** : Projet complet structuré pour Eclipse.

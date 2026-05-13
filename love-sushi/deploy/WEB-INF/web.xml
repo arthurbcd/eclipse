@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" version="5.0">
+
+  <display-name>TD5</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- ========================================= -->
+    <!-- CREATE QUESTIONS SERVLET -->
+    <!-- ========================================= -->
+
+    <servlet>
+
+        <description>
+            Création des questions
+        </description>
+
+        <display-name>
+            CreateQuestionsServlet
+        </display-name>
+
+        <servlet-name>
+            CreateQuestionsServlet
+        </servlet-name>
+
+        <servlet-class>
+            fr.ubdx.net.servlet.CreateQuestionsServlet
+        </servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>
+            CreateQuestionsServlet
+        </servlet-name>
+
+        <url-pattern>
+            /CreateQuestionsServlet
+        </url-pattern>
+
+    </servlet-mapping>
+
+
+    <!-- ========================================= -->
+    <!-- QUESTIONS SERVLET -->
+    <!-- ========================================= -->
+
+    <servlet>
+
+        <description>
+            Affichage des questions client
+        </description>
+
+        <display-name>
+            QuestionsServlet
+        </display-name>
+
+        <servlet-name>
+            QuestionsServlet
+        </servlet-name>
+
+        <servlet-class>
+            fr.ubdx.net.servlet.QuestionsServlet
+        </servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>
+            QuestionsServlet
+        </servlet-name>
+
+        <url-pattern>
+            /QuestionsServlet
+        </url-pattern>
+
+    </servlet-mapping>
+
+
+    <!-- ========================================= -->
+    <!-- SUBMIT ANSWERS SERVLET -->
+    <!-- ========================================= -->
+
+    <servlet>
+
+        <description>
+            Enregistrement des réponses client
+        </description>
+
+        <display-name>
+            SubmitAnswersServlet
+        </display-name>
+
+        <servlet-name>
+            SubmitAnswersServlet
+        </servlet-name>
+
+        <servlet-class>
+            fr.ubdx.net.servlet.SubmitAnswersServlet
+        </servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>
+            SubmitAnswersServlet
+        </servlet-name>
+
+        <url-pattern>
+            /SubmitAnswersServlet
+        </url-pattern>
+
+    </servlet-mapping>
+
+
+    <!-- ========================================= -->
+    <!-- ADMIN ANSWERS SERVLET -->
+    <!-- ========================================= -->
+
+    <servlet>
+
+        <description>
+            Affichage backoffice des réponses
+        </description>
+
+        <display-name>
+            AdminAnswersServlet
+        </display-name>
+
+        <servlet-name>
+            AdminAnswersServlet
+        </servlet-name>
+
+        <servlet-class>
+            fr.ubdx.net.servlet.AdminAnswersServlet
+        </servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>
+            AdminAnswersServlet
+        </servlet-name>
+
+        <url-pattern>
+            /AdminAnswersServlet
+        </url-pattern>
+
+    </servlet-mapping>
+</web-app>
